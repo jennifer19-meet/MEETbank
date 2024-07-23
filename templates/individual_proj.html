@@ -1,0 +1,39 @@
+
+{% extends "layouts/base.html" %}
+  {% set title %}Individual Project{% endset %}
+  {% set style %}main.css{% endset %}
+ {% block body %}
+ <div class="center_non_text">
+  <table class="center_table">
+    <tr>
+    <th>Names</th>
+    {% for h in headers %}
+    <th>{{h}}</th>
+    {%endfor %}
+  </tr>
+  <form action="/individual_proj/{{group}}" method="POST">
+    {% for uid in students %}
+    <tr>
+
+      <td><p>{{students[uid]['name']}}</p></td>
+        {% for i in range(students[uid]['individual_proj']|length) %}
+          <td>
+            {% if students[uid]['individual_proj'][i] %}
+              <input type= 'checkbox' name="individual_proj" value="{{uid}}_{{i}}" checked>
+            {% else %}
+              <input type= 'checkbox' name="individual_proj" value="{{uid}}_{{i}}">
+            {% endif %}
+          </td>
+      {% endfor %}
+      </tr>
+    {% endfor %}
+
+    </table>
+  <br><br>
+  <div class="text-center">
+    <input type="submit" name = 'save' value="Save">
+  </div>
+  <br><br>
+  </form>
+</div>
+  {% endblock %}

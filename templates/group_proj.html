@@ -1,0 +1,36 @@
+{% extends "layouts/base.html" %}
+{% set title %}Group Project{% endset %}
+{% set style %}main.css{% endset %}
+ {% block body %}
+
+<div class="center_non_text">
+  <table class="center_table">
+    <tr>
+    <th>Names</th>
+    <th>Won</th>
+  </tr>
+  <form action="/group_proj/{{group}}" method="POST">
+    {% for uid in students %}
+    <tr>
+
+      <td><p>{{students[uid]['name']}}</p></td>
+      <td>
+        {% if students[uid]['group_proj'] %}
+          <input type= 'checkbox' name="group_proj" value="{{uid}}" checked>
+        {% else %}
+          <input type= 'checkbox' name="group_proj" value="{{uid}}">
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+
+    </table>
+  <br><br>
+  <div class="text-center">
+    <input type="submit" name = 'save' value="Save">
+  </div>
+  <br><br>
+  </form>
+</div>
+
+{% endblock %}

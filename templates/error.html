@@ -1,0 +1,10 @@
+{% extends "layouts/base.html" %}
+{% set title %}Error{% endset %}
+{% set style %}main.css{% endset %}
+ {% block body %}
+ <div class="center_us">
+	<h2> {{error}} </h2>
+	<br>
+	<a href="{{url_for('main')}}"><button>Back to Home</button></a>
+</div>
+{% endblock %}

@@ -1,0 +1,163 @@
+
+{% extends "layouts/base.html" %}
+  {% set title %}Home{% endset %}
+  {% set style %}main.css{% endset %}
+ {% block body %}
+ <div class="container">
+  {% if user_type == "student" %}
+  <br>
+  <div style="text-align: center;">
+    <h1>Your current balance is: $ {{money}}</h1>
+    <br><br><hr><br><br>
+<h3>Breakdown</h3>
+<br>
+    <table class="center_table">
+      <tr>
+      <th>Category</th>
+      <th>Amount</th>
+      <th>Number</th>
+      <th>Max</th>
+      <th>Percent Completed</th>
+      </tr>
+      <tr>
+        <td>Initial</td>
+        <td>${{settings['initial']}}</td>
+        <td>1</td>
+        <td>1</td>
+        <td>100%</td>
+      </tr>
+      <tr>
+        <td>Daily</td>
+        <td>${{ user['daily']*settings['daily'] }}</td>
+        <td>{{ user['daily'] }}</td>
+        <td>11</td>
+        <td>{{ (user['daily']/11 * 100)|round(1) }}%</td>
+    </tr>
+      <tr>
+        <td>Bonuses</td>
+        <td>${{ user['bonuses'].count(True)*settings['bonus'] }}</td>
+        <td>{{ user['bonuses'].count(True) }}</td>
+        <td>9</td>
+        <td>{{ (user['bonuses'].count(True)/9 *100)|round(1) }}%</td>
+    </tr>
+      <tr>
+        <td>Extras</td>
+        <td>${{ user['extras'].count(True)*settings['extras'] }}</td>
+        <td>{{ user['extras'].count(True) }}</td>
+        <td>9</td>
+        <td>{{ (user['extras'].count(True)/9 *100)|round(1) }}%</td>
+    </tr>
+      <tr>
+        <td>Advanced Labs</td>
+        <td>${{ user['advanced'].count(True)*settings['advanced'] }}</td>
+        <td>{{ user['advanced'].count(True) }}</td>
+        <td>9</td>
+        <td>{{ (user['advanced'].count(True)/9 *100)|round(1) }}%</td>
+    </tr>
+      <tr>
+        <td>Participation</td>
+        <td>${{ user['sessions'].count(True)*settings['participation'] }}</td>
+        <td>{{ user['sessions'].count(True) }}</td>
+        <td>11</td>
+        <td>{{ (user['sessions'].count(True)/11 * 100)|round(1) }}%</td>
+    </tr>
+      <tr>
+        <td>TAed</td>
+        <td>${{ user['TA']*settings['TA_pay'] }}</td>
+        <td>{{user['TA']}}</td>
+        <td>15</td>
+        <td>{{ (user['TA']/15 * 100)|round(1) }}%</td>
+    </tr>
+      <tr>
+        <td>Milestones completed</td>
+        <td>${{ user['individual_proj'].count(True)*settings['milestones'] }}</td>
+        <td>{{ user['individual_proj'].count(True) }}</td>
+        <td>11</td>
+        <td>{{ (user['individual_proj'].count(True)/11 *100)|round(1) }}%</td>
+    </tr>
+      <tr>
+        <td>Group Project Won?</td>
+        <td>${{ user['group_proj']*settings['group_winners'] }}</td>
+        <td>{{ [user['group_proj']].count(True) }}</td>
+        <td>1</td>
+        <td>{{ ([user['group_proj']].count(True)/1 *100)|round(1) }}%</td>
+    </tr>
+      <tr>
+        <td>Asked for help</td>
+        <td>${{ user['help_asked']*settings['help_cost'] }}</td>
+        <td>{{user['help_asked']}}</td>
+        <td>∞</td>
+        <td>-</td>
+    </tr>
+    </table>
+  </div>
+  <br><br><br>
+{% else %}
+	<div class="accordion" id="accordionInstructors">
+{% if user_type != 'TA' %}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Session
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionInstructors">
+      <div class="accordion-body">
+      	{% for group in groups %}
+      <a href="{{url_for('session_page', group = group)}}">Group {{group}} </a><br>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Lab
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionInstructors">
+      <div class="accordion-body">
+      	{% for group in groups %}
+      <a href="{{url_for('lab_page', group = group)}}">Group {{group}} </a><br>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Individual Project
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionInstructors">
+      <div class="accordion-body">
+        
+      	{% for group in groups %}
+      <a href="{{url_for('individual_proj', group = group)}}">Group {{group}} </a><br>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFour">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        Group Project
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionInstructors">
+      <div class="accordion-body">
+      	{% for group in groups %}
+      <a href="{{url_for('group_proj', group = group)}}">Group {{group}} </a><br>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+	
+	{% endif %}
+</div>
+  {% endblock %}

@@ -1,0 +1,51 @@
+
+{% extends "layouts/base.html" %}
+  {% set title %}Shop{% endset %}
+  {% set style %}custom.css{% endset %}
+ {% block body %}
+
+
+    <link rel="stylesheet" href="static/css/templatemo.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="static/css/fontawesome.min.css">
+
+    <!-- Start Content -->
+    <div class="container py-5">
+        <div class="row">
+        {% for uid in stuff %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 product-wap rounded-0">
+                            <div class="card rounded-0">
+                                <img class="card-img rounded-0 img-fluid" src="static/Shop_items/{{ stuff[uid]['pics'][0] }}.jpeg">
+                            </div>
+                            <div class="card-body">
+                                <a href="shop-single.html" class="h3 text-decoration-none">{{ stuff[uid]['name'] }}</a>
+                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                    <li>Quantity: {{ stuff[uid]['number'] }}</li>
+                                    <li class="pt-2">
+                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                                    </li>
+                                </ul>
+                                <p class="text-center mb-0">${{ stuff[uid]['price'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+    <!-- End Content -->
+
+    <!-- Start Script -->
+    <script src="static/js/jquery-1.11.0.min.js"></script>
+    <script src="static/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/templatemo.js"></script>
+    <script src="static/js/custom.js"></script>
+  
+
+  {% endblock %}

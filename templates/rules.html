@@ -1,0 +1,128 @@
+
+{% extends "layouts/base.html" %}
+  {% set title %}Rules{% endset %}
+  {% set style %}main.css{% endset %}
+ {% block body %}
+	<div class="container-fluid">
+		<br>
+	<h1 class="center_us">Rules Explained</h1><br>
+	<p>The point of this system is to encourage the initial steps of PEP (googling things and asking your neighbor for high-level help/explanations) instead of skipping to the final step and asking an instructor/TA. It's also meant to incentivise everyone to do push themselves in the labs (e.g. doing the bonuses/optional labs/advanced labs/extra work in an area in CS you're very interested in). In other words, it's meant to promote healthy habits. <b>If at any point this becomes toxic or promotes unhealthy behavior that we can't stop/fix, we will stop the system.</b></p><br>
+	<div class="accordion" id="accordionRules">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <h2> Earning Money</h2>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionRules">
+      <div class="accordion-body">
+        <ol>
+		<h3><li>Defaults:</li></h3>
+		<ul>
+			<li>First day you get ${{settings['initial']}}</li>
+			<li>Everyday you get ${{settings['daily']}}</li>
+		</ul>
+
+		<h3><li>During sessions:</li></h3>
+		<ul>
+			<li>If you answer a question asked by an instructor/TA in class, you get $100 (you can get this once per session)</li>
+		</ul>
+
+		<h3><li>Labs:</li></h3>
+		<ul>
+			<li>If you’re done with minimum requirements and do all the bonuses of a certain lab (not just the first section or half of it… etc), you get ${{settings['bonus']}}</li>
+			<li>If you’re done with minimum requirements and finish all of an optional lab or advanced lab, you get ${{settings['bonus']}} for that lab</li>
+			<li>If you’re done with minimum requirements and you become a “TA”, you need to help at least 2 students to get ${{settings['TA_pay']}} (“TA” pay)</li>
+			<li>If you finish minimum requirements and decide to push yourself in a certain domain (e.g. CSS, JS, Jinja2, …etc), you get ${{settings['extras']}}. However, if you do this with multiple labs, you need to keep adding new things and push yourself more in that domain.</li>
+		</ul>
+
+		<h3><li>Individual Project:</li></h3>
+		<ul>
+			<li>You get ${{settings['milestones']}} for each milestone:</li>
+			<ol>
+				<li>Wireframe and storyboard </li>
+				<li>3 html pages</li>
+				<li>CSS/Bootstrap</li>
+				<li>DOM added/User interactivity (JS)</li>
+				<li>3 routes (Flask)</li>
+				<li>Post and Get (Flask)</li>
+				<li>Sign up and sign in forms + authentication</li>
+				<li>Database</li>
+				<li>Dynamic routes + dynamic pages</li>
+				<li>Heroku</li>
+				<li>API added</li>
+			</ol>
+		</ul>
+
+		<h3><li>Group Project:</li></h3>
+		<ul>
+			<li>TBD</li>
+		</ul>
+	</ol>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <h2>Spending Money</h2>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionRules">
+      <div class="accordion-body">
+       <ol>
+		<h3><li>Instructor/TA help:</li></h3>
+		<ul>
+			<li>It costs ${{ -1 * settings['help_cost']}} to get debugging help. This applies during sessions, labs, after hours and project worktime. </li>
+			<li>However, the following kind of help is free:</li>
+			<ol>
+				<li>Asking us to explain what the lab means (i.e. understanding/English help)</li>
+				<li>Asking if something can be found in the slides</li>
+				<li>Asking if you're googling things properly to find what you need</li>
+				<li>Re-explaining topics</li>
+				<li>Installation/laptop help</li>
+				<li>How to understand an error message (whether it's a python or jinja error message)</li>
+				<li>If the instructor/TA finds the bug too hard for you to catch, they won't charge you</li>
+			</ol>
+		</ul>
+
+		<h3><li>Merch/Snacks</li></h3>
+		<ul>
+			<li>There should be enough stuff for everyone to buy something. Each student will only be able to buy one item. Items will include (but aren't limited to):</li>
+			<ul>
+				<li>MIT merch (most expensive) (you need to save up everything and do extras to get it)</li>
+				<li>MEET merch</li>
+				<li>Rubber duck of your choice (4 available) (e.g. <a href="https://shop.celebriducks.com/v/vspfiles/photos/homepage/1526587075698.jpg"> Duckieeess</a>)</li>
+				<li>Rare double Fireball </li>
+				<li>Candy</li>
+			</ul>
+		</ul>
+	</ol>
+      </div>
+    </div>
+  </div>
+  {% if extra %}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <h3>Extras for Instructos/TAs</h3>
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionRules">
+      <div class="accordion-body">
+        <ul>
+        	<li>Make sure to tell the students that if this becomes toxic/promotes unhealthy behavior at any point that we can’t fix, we’ll stop the system.</li>
+        	<li>Emphasize that they shouldn’t be talking about how much they have since it might make others feel bad and they shouldn’t make fun of others who might not have as much as them.</li>
+        	<li>Keep reminding the students to only help each other with high level explanations and pointers. And that other forms of help are considered cheating.</li>
+        	<li>Since students won’t have as many questions for the instructors/TAs, the team can use the team to go around and make sure that the students who are helping each other are doing it the proper way (high level explanation)</li>
+        	<li>If a student feels stressed about the system, ask them why they think it’s in place.</li>
+        	<li>If a student gets low on cash, you can decrease the price. If the student goes broke, you can give them more money ($100) so they can continue asking questions.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+</div>
+<br><br><br>
+  {% endblock %}

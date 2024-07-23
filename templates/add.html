@@ -1,0 +1,19 @@
+
+{% extends "layouts/base.html" %}
+{% set title %}Add Users{% endset %}
+{% set style %}main.css{% endset %}
+ {% block body %}
+	<form action="/add" method="POST" class="center_us" enctype=multipart/form-data>
+		<input type="file" name="excel_sheet" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+		<input type="submit" name='add' value="Add users">
+	</form>
+	<br><br><hr><br><br>
+	<div class="center_us">
+	<form action="/reset_all_passwords" method="POST">
+		<input type="submit" name='reset' value="Reset All Passwords">
+	</form><br>
+	<form action="/delete_all_users" method="POST">
+		<input type="submit" name='delete' value="Delete All Users">
+	</form>
+	</div>
+{% endblock %}

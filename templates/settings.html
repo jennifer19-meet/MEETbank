@@ -1,0 +1,32 @@
+
+{% extends "layouts/base.html" %}
+  {% set title %}Settings{% endset %}
+  {% set style %}main.css{% endset %}
+
+  {% block body %}
+<form action="/settings" method="POST" class="center_us">
+	Help Cost: <input type="number" name="help_cost" value="{{settings['help_cost']}}" max="-1"><br>
+	Participation: <input type="number" name="participation" value="{{ settings['participation'] }}"  required><br>
+	Bonus: <input type="number" name="bonus" value="{{ settings['bonus'] }}" required><br>
+	Extras: <input type="number" name="extras" value="{{ settings['extras'] }}" required><br>
+	Advanced: <input type="number" name="advanced" value="{{ settings['advanced'] }}" required><br>
+	Daily: <input type="number" name="daily" value="{{ settings['daily'] }}" required><br>
+	Initial Pay: <input type="number" name="initial" value="{{ settings['initial'] }}" required><br>
+	TA Pay: <input type="number" name="TA_pay" value="{{ settings['TA_pay'] }}" required><br>
+	Project Milestones: <input type="number" name="milestones" value="{{ settings['milestones'] }}" required><br>
+	Group Project Winners: <input type="number" name="milestones" value="{{ settings['group_winners'] }}" required><br><br>
+	<input type="submit" name="save" value="Save">
+</form>
+<br><br>
+<form action="/add_day" method="POST" class="center_us">
+	<input type="submit" name="add" value="Add another day">
+</form>
+<br><br>
+<form action="/remove_day" method="POST" class="center_us">
+	<input type="submit" name="remove" value="Remove a day">
+</form>
+<br><br>
+<form action="/student_tiers" method="POST" class="center_us">
+	<input type="submit" name="get" value="Get Student Money Sheet">
+</form>
+{% endblock %}
