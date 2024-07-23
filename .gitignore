@@ -1,4 +1,5 @@
 .env
 config.py
-.DS_Store
 env
+.DS_Store
+
